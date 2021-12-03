@@ -136,14 +136,20 @@ $(".list-group").on("click", "span", function() {
     .attr("type", "text")
     .addClass("form-control")
     .val(date);
+
   $(this).replaceWith(dateInput);
+
+  // enable jquery ui datepicker
+  dateInput.datepicker({
+    minDate: 1
+  });
 
   // automatically bring up the calendar
   dateInput.trigger("focus");
 });
 
 // value of due date was changed
-$(".list-group").on("blur", "input[type='text']", function() {
+$(".list-group").on("change", "input[type='text']", function() {
   var date = $(this).val();
 
   // get status type and position in the list
@@ -239,6 +245,16 @@ $("#trash").droppable({
   },
   out: function(event, ui){
     console.log("out");
+  }
+});
+
+// Enable jquery UI datepicker 
+
+$("#modalDueDate").datepicker({
+  minDate: 1,
+  onClose: function(){
+    // when calander is closed, force a "chage" event on `dateInput`
+    $(this).trigger("change");
   }
 });
 
