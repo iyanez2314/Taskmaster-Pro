@@ -286,5 +286,12 @@ $("#remove-tasks").on("click", function() {
   saveTasks();
 });
 
+// Interval for task 
+setInterval(function () {
+  $(".card .list-group-item").each(function(index, el){
+
+  });
+}, 1800000);
+
 // load tasks for the first time
 loadTasks();
